@@ -1,0 +1,89 @@
+Page Testing:
+~Click each page multiple times
+
+Theme testing:
+~Change the Theme
+
+Summarizer Testing:
+	Test: Empty Link
+	Correct Output: Invalid Link
+	Test: "dhciefh" in Link Field
+	Correct Output: Invalid Link
+	Test( ~40 seconds): https://www.youtube.com/watch?v=Fi3_BjVzpqk 
+	Correct Output: A brief summary 
+Flashcard Testing: 
+	Test: Create A Set
+		front: Software development life cycle
+		back: is a process for building and delivering software.
+		Click +
+		Click check mark
+	Test: Open Flash Card Gallary and click the play button to display a set
+		~Test Display functionality
+	Test: Edit Card
+		~Add 
+			Front: Computer Science
+			Back: is Cool 
+		~Done
+		~Display Card - Check if the edited card is in there
+		~Delete the very First card so that the Computer Science is Cool Card is the only one left
+	Test: Delete Set
+	Test: Create 2 Flash Cards Sets
+	Test: Clear Set (click gallarypage to refresh)
+	Test: Add Multiple Sets(Atleast 5) - move on to next section
+Calender Testing:
+	~Click Todays Date
+	~Add an event1
+	~Click off page and come back and click task day again(Task should still be there) 
+	~Go to December
+	~Click another pager, click calender again, calener should still be there
+      ~Add Christmas
+	~Close the program, reopen calender, events should still be on calender
+	~Remove event1
+	~Click Off page, click back on page, event1 should be gone
+Generator Testing:
+	Test: Conflicting Times (Given Time: 2:00 PM 4:31 PM (mon-fri)-- Time Conflicts: 1:59 PM -3:31 , 1:59 PM- 4:15 PM , 2:00 PM-3:31 PM, 2:00 PM- 4:31 PM, 3:42 PM -3:56PM
+	Test: invlaid time formats (Ex: letters, symbols, no AM/PM) 
+	Test: 4:35 PM - 5:36 PM (wed-thurs)
+	Test: 5:36 PM - 6:00 PM (Tues)
+      Test: 6:52 AM - 2:00 OM PM (mon)
+	Test: 6:43 PM - 2:00 AM 
+		Output: Error
+	Test 7:13 PM - 11:59 PM (Sun-tues, Sat)
+	
+	Test: Hobbies
+	Test: Before A task 
+		Hobby: hobby1
+		times a week: 5
+		max = 2
+		Time of day: morning
+		when: before
+       ~Add hobby
+	Test: After A task 
+		Hobby: hobby2
+		times a week: 3
+		max = 1
+		Time of day: evening
+		when: after
+      ~Close the app and reopen, schedule should still be there
+ 	~Click generate, the schedule should be cleared
+	Test: Between Tasks
+	~Create a schedule:
+		CS321: 12:00 PM-1:15 PM (mon and wed)
+		STAT344 : 4:30 PM - 5:45 PM ( mon and ed)
+		CS330: 12:00 PM - 1:15 PM (tues and thurs)
+		CS351: 1:30 PM - 2:45 PM (tues and thurs) 
+		
+		Hobby: "Study", 5 , 2 hours, afternoon, between
+		Hobby: "Streaming", 7, 4 hours, evening, after
+		Hobby: "Gym:", 3, 1 hour, morning, before (if theres no task in the box, it will just append it) 
+	
+	
+	
+
+
+
+
+	
+		
+
+		

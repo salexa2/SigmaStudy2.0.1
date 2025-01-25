@@ -1,0 +1,10 @@
+﻿To create the virtual environment, go into project folder and run this:
+
+python -m venv myenv
+source myenv/bin/activate
+
+
+Now run the following pip install command in the virtual environment: 
+
+
+pip install pillow transformers youtube_transcript_api nltk googlesearch-python beautifulsoup4 pytube SpeechRecognition sumy pydub youtube_dl vosk sentencepiece torch jsonpickle

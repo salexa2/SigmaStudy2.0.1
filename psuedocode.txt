@@ -1,0 +1,33 @@
+function findLargestConnectedComponentSize(graph):
+    //hold total number of nodes in graph
+    n = # of nodes in graph
+    //Keep track of visited nodes
+    visited = array of size n initialized with False
+    //store the  size of the largest connected component
+    lComponentSize = 0
+    //iterate through graph 
+    for node in range(n):
+       
+    if not visited[node]: 
+	    // performs a depth-first traversal of a connected component, visiting each node and its neighbors once. In the worst case, it visits all nodes and edges exactly once, which takes O(n + m) time for the entire graph.
+    componentSize = DFS(graph, node, visited)
+
+    largestComponentSize = max(largestComponentSize, componentSize)
+
+    return largestComponentSize
+
+//DepthFirstSearch 
+int DFS(int vertex) {
+    visited[vertex] = true;
+
+    int size = 1;  // Initialize the component size to 1 for the current node
+
+    Iterator<Integer> ite = adjLists[vertex].listIterator();
+    while (ite.hasNext()) {
+        int adj = ite.next();
+        if (!visited[adj])
+            size += DFS(adj);
+    }
+// Return the component size for this connected component
+    return size;  
+}
