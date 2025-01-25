@@ -2,6 +2,8 @@
 
 System Overview:
 
+Please refer to StudySigma for past changes and history. 
+
 Sigma Study is an innovative app designed to make learning from 
 YouTube videos easier and more effective. With Sigma Study, users can simply 
 input a YouTube link and get a transcript of the video. They can then summarize 
