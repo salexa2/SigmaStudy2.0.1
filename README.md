@@ -3,6 +3,7 @@
 System Overview:
 
 Please refer to StudySigma for past changes and history. 
+This is the most updated release 
 
 Sigma Study is an innovative app designed to make learning from 
 YouTube videos easier and more effective. With Sigma Study, users can simply 
