@@ -1,7 +1,7 @@
-﻿#from msilib.schema import CustomAction
+﻿
 import tkinter as tk
 from tkinter import * 
-from YoutubeTranscript import get_Tran,summarizing
+from YoutubeTranscript import get_Tran
 import customtkinter
 from tkinter import filedialog
 import gallary 
@@ -17,6 +17,9 @@ import atexit
 import threading
 from threading import *
 from googletrans import Translator
+import asyncio
+
+
 
 
 #study app that aids students in studying
@@ -131,13 +134,10 @@ def getLink(linkbar, default_text):
     default_text.insert(END,script)
    
     #use openf to open the newly created text file
+
 def summarize(url,default_text,button):
-    config(button)
-    sum_script = get_Tran(url)
-    script = summarizing(sum_script)
-    default_text.delete( "0.0", END)
-    default_text.insert(END,script)
-    configOn(button)
+    print("summary")
+    
 
 
 
@@ -189,7 +189,8 @@ def configOn(sum_button):
 #-------------------pages---------------
 
 
-def upload_page():
+
+async def upload_page():
    
    upload_frame.lift()
  
@@ -223,13 +224,26 @@ def upload_page():
    for child in l:
         text = child.cget("text")
         if text is not None:
-            translated_text = translator.translate(text, dest= language_list[c_language])
+            translated_text =  await translator.translate(text, dest= language_list[c_language])
             print(translated_text.text)
             child.configure(text= translated_text.text)
-  
+   
+
+def on_upload_button_click():
+
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    if asyncio.get_event_loop().is_running():
+        root.after(100, lambda: asyncio.create_task(upload_page()))  # Schedule async task
+    else:
+        asyncio.run(upload_page())
 
 gallary_frames = []
-def gallary_page():
+def gallary_page(): 
    for g in gallary_frames:
        g.destroy()
    gallary_frame = customtkinter.CTkFrame(root, width = 1150, height = 700) 
@@ -358,7 +372,7 @@ def settings_page():
             
             
 
-def home_Page():
+async def home_Page():
     home_frame.lift()
     home_label.place(x = 550, y = 40)
     default_text = customtkinter.CTkTextbox(home_frame, width=1115,height= 650, font = ("Helvetica", 18))
@@ -372,13 +386,13 @@ def home_Page():
     for child in l:
         text = child.cget("text")
         if text is not None:
-            translated_text = translator.translate(text, dest= language_list[c_language])
+            translated_text = await translator.translate(text, dest= language_list[c_language])
             print(translated_text.text)
             child.configure(text= translated_text.text)
     for child2 in n:
         text1 = child2.get("0.0", END)
         if text1 is not None:
-            translated_text1 = translator.translate(text1, dest= language_list[c_language])
+            translated_text1 = await translator.translate(text1, dest= language_list[c_language])
             print(translated_text1.text)
             child2.delete("0.0", END)
             child2.insert("0.0",translated_text1.text)
@@ -403,7 +417,7 @@ sidebar_frame.grid(column =0, row=0, sticky = "NSEW")
 logo_label = customtkinter.CTkLabel(sidebar_frame, text="MENU", font=customtkinter.CTkFont(size=20, weight="bold"))
 logo_label.place(x = 60, y =10)
 
-sidebar_button_1 = customtkinter.CTkButton(sidebar_frame, text= "Summary", fg_color= "#279400", hover_color="#1C6B00", command= upload_page)
+sidebar_button_1 = customtkinter.CTkButton(sidebar_frame, text= "Summary", fg_color= "#279400", hover_color="#1C6B00", command= on_upload_button_click)
 sidebar_button_1.place(x = 20, y = 50)
 
 sidebar_button_2 = customtkinter.CTkButton(sidebar_frame, text= "Flash Card Gallary",fg_color= "#279400",hover_color="#1C6B00", command=gallary_page)
@@ -463,7 +477,7 @@ def changeLanguage(choice):
             print(translated_text.text)
             child.configure(text= translated_text.text)
 
-
+            
 
   
 
@@ -474,7 +488,8 @@ language_optionemenu.place(x = 20, y = 750)
 
 
 
-home_Page()
+if __name__ == "__main__":
+    asyncio.run(home_Page())
 
 
 root.mainloop()

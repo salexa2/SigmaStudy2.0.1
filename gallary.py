@@ -1,5 +1,5 @@
 ﻿#from ast import Delete
-from tkinter.tix import COLUMN
+#from tkinter.tix import COLUMN
 
 import tkinter 
 from tkinter import * 

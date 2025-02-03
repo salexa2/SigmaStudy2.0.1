@@ -1,29 +1,46 @@
-from typing import Final, final
 from youtube_transcript_api import YouTubeTranscriptApi as yta
 import re
-import torch
-from transformers import AutoTokenizer, AutoModelWithLMHead
-
 
 
 
 
 
 def get_Tran(vid_url):
-    vid_id = re.search(r"v=([^&]+)", vid_url).group(1)
-    print("Video ID:",vid_id)
-    #extract the text
+    import re
+
+def get_Tran(vid_url):
+    if not vid_url:
+        raise ValueError("Video URL is empty or None")
+    
+    # Perform the regex search
+    match = re.search(r"v=([^&]+)", vid_url)
+    
+    if match:
+        vid_id = match.group(1)
+        print("Video ID:", vid_id)
+    else:
+        raise ValueError("Could not extract video ID from the URL")
+
+    # Extract the transcript using the video ID
     data = yta.get_transcript(vid_id)
-    #clean up transcript alittle
+    
+    # Clean up the transcript a little
     transcript = ''
     for value in data:
-        for key,val in value.items():
+        for key, val in value.items():
             if key == 'text':
                 transcript += val
+                
+    # Clean up the transcript further
     l = transcript.splitlines()
     final_tra = " ".join(l)
     final_tra = clean_Script(final_tra)
+    
     return final_tra
+
+
+
+
 
 def clean_Script(transcript):
     # Remove timestamps
@@ -38,13 +55,4 @@ def clean_Script(transcript):
     transcript = re.sub(r'\<.*?\>', '', transcript)
     return transcript
 
-def summarizing(script):
-    tokenizer = AutoTokenizer.from_pretrained('t5-base', model_max_length = 1024)
-    model = AutoModelWithLMHead.from_pretrained('t5-base', return_dict = True)
-    sequence = (script)
-    inputs = tokenizer.encode("summarize: "+ sequence,return_tensors = 'pt', max_length= 1024, truncation = True)
-    outputs = model.generate(inputs,max_length = 600, min_length = 500 ,length_penalty = 2.,num_beams = 2)
-    summary = tokenizer.decode(outputs[0])
-    summary = clean_Script(summary)
-    return summary
     
