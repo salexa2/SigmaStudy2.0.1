@@ -1,6 +1,7 @@
 ﻿To run the app:
 1) Make sure you have the latest Python Installed
 https://www.python.org/downloads/
+make sure add to path is clicked
 
 2) Download the source code zip file and extract all
 3) Once extracted navigate into the extracted folder using the command prompt. 
@@ -19,3 +20,16 @@ Hover over the folder, right click and hit copy, you want to paste that into CP 
         python sigmastudy.py
 8) deactivate virtual environment(optional)
 	deactivate
+
+
+Uninstallation  process:
+1) search Python and uninstall
+After uninstalling, open a command prompt and type:
+python --version
+
+2) to install dependencies just do: 
+pip uninstall -r requirements.txt  # To uninstall them
+
+notice if you try to run the app again, youll get error
+
+Thank you for testing out my app!
