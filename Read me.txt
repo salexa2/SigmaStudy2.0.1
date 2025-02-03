@@ -1,7 +1,9 @@
 ﻿To run the app:
 1) Make sure you have the latest Python Installed
+
 https://www.python.org/downloads/
-make sure add to path is clicked
+
+make sure add to path is clicked and admin privileges is checked!
 
 2) Download the source code zip file and extract all
 3) Once extracted navigate into the extracted folder using the command prompt. 
