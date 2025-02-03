@@ -40,10 +40,10 @@ To get started with Sigma Study locally, please follow the instructions in the R
   (Lead Developer)
 
 - **Chase Walters**  
-  (Developer)
+  (Past Contributor)
 
 ---
 ## **License**
 
-N/A
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 ---
