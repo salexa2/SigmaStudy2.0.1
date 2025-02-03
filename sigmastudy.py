@@ -242,6 +242,22 @@ def on_upload_button_click():
     else:
         asyncio.run(upload_page())
 
+
+def on_plan_page_click():
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    if asyncio.get_event_loop().is_running():
+        root.after(100, lambda: asyncio.create_task(plan_page()))  # Schedule async task
+    else:
+        asyncio.run(plan_page())
+
+
+
+
 gallary_frames = []
 def gallary_page(): 
    for g in gallary_frames:
@@ -336,7 +352,7 @@ def RequiredForm(plan_frame,planner,gen):
    
 
 
-def plan_page():
+async def plan_page():
      
      plan_frame.lift()
      planner.planner_getFrame(plan_frame)
@@ -348,7 +364,7 @@ def plan_page():
      for child in l:
         text = child.cget("text")
         if text is not None:
-            translated_text = translator.translate(text, dest= language_list[c_language])
+            translated_text = await translator.translate(text, dest= language_list[c_language])
             print(translated_text.text)
             child.configure(text= translated_text.text)
 
@@ -426,7 +442,7 @@ sidebar_button_2.place(x = 20, y = 100)
 sidebar_button_3 = customtkinter.CTkButton(sidebar_frame, text= "Calendar",fg_color= "#279400",hover_color="#1C6B00",command= calander_page)
 sidebar_button_3.place(x = 20, y = 150)
 
-sidebar_button_4 = customtkinter.CTkButton(sidebar_frame, text= "Generator",fg_color= "#279400",hover_color="#1C6B00", command = plan_page)
+sidebar_button_4 = customtkinter.CTkButton(sidebar_frame, text= "Generator",fg_color= "#279400",hover_color="#1C6B00", command = on_plan_page_click)
 sidebar_button_4.place(x = 20, y = 200)
 
 sidebar_button_5 = customtkinter.CTkButton(sidebar_frame, text= "Settings",fg_color= "#279400",hover_color="#1C6B00", command = settings_page)
