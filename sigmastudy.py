@@ -255,7 +255,41 @@ def on_plan_page_click():
     else:
         asyncio.run(plan_page())
 
+def on_cal_page_click():
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
 
+    if asyncio.get_event_loop().is_running():
+        root.after(100, lambda: asyncio.create_task(calander_page()))  # Schedule async task
+    else:
+        asyncio.run(calander_page())
+
+def on_home_page_click():
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    if asyncio.get_event_loop().is_running():
+        root.after(100, lambda: asyncio.create_task(home_Page()))  # Schedule async task
+    else:
+        asyncio.run(home_Page())
+
+def on_setting_click():
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    if asyncio.get_event_loop().is_running():
+        root.after(100, lambda: asyncio.create_task(settings_page()))  # Schedule async task
+    else:
+        asyncio.run(settings_page())
 
 
 gallary_frames = []
@@ -282,7 +316,7 @@ def gallary_page():
   
 
 
-def calander_page():  
+async def calander_page():  
      calander_frame.lift()
     
      side_label.place(x=1150,y=70)
@@ -306,7 +340,7 @@ def calander_page():
      for child in l:
         text = child.cget("text")
         if text is not None:
-            translated_text = translator.translate(text, dest= language_list[c_language])
+            translated_text = await translator.translate(text, dest= language_list[c_language])
             print(translated_text.text)
             child.configure(text= translated_text.text)
 
@@ -334,7 +368,7 @@ def RequiredForm(plan_frame,planner,gen):
      print("form should show")
      gen.configure(state = "disabled")
      temp_frame = customtkinter.CTkFrame(plan_frame, width = 1150, height =750) 
-     temp_frame.pack()
+     temp_frame.pack(side="top", pady=10)
 
      next_button = customtkinter.CTkButton(temp_frame, text = "add Task", width = 25,height = 25, text_color ="#000000",  fg_color= "#FFFFFF",hover_color = "#CFCFCF", corner_radius = 200,font = ("Helvetica",18),  anchor="center", command = lambda: helperP(planner,form_frame))
      next_button.pack(anchor= "n", pady = 15)
@@ -356,6 +390,11 @@ async def plan_page():
      
      plan_frame.lift()
      planner.planner_getFrame(plan_frame)
+     # Add a label at the top to instruct the user to scroll down
+     instruction_label = tk.Label(plan_frame, text="Scroll down to generate plan!", font=("Helvetica", 18))
+     instruction_label.pack(pady=10)  # Adjust padding to your needs
+
+
      planner.displayPlan()
      gen_button.pack(pady = 19)
      planner.show_All()
@@ -370,7 +409,7 @@ async def plan_page():
 
      
      
-def settings_page():
+async def settings_page():
      settings_frame.lift()
      settings_label.place(x=40,y=30)
      scale_label.place(x=40,y=80)
@@ -382,7 +421,7 @@ def settings_page():
      for child in n:
         text = child.cget("text")
         if text is not None:
-            translated_text = translator.translate(text, dest= language_list[c_language])
+            translated_text = await translator.translate(text, dest= language_list[c_language])
             child.configure(text = translated_text.text)
      
             
@@ -439,16 +478,16 @@ sidebar_button_1.place(x = 20, y = 50)
 sidebar_button_2 = customtkinter.CTkButton(sidebar_frame, text= "Flash Card Gallary",fg_color= "#279400",hover_color="#1C6B00", command=gallary_page)
 sidebar_button_2.place(x = 20, y = 100)
 
-sidebar_button_3 = customtkinter.CTkButton(sidebar_frame, text= "Calendar",fg_color= "#279400",hover_color="#1C6B00",command= calander_page)
+sidebar_button_3 = customtkinter.CTkButton(sidebar_frame, text= "Calendar",fg_color= "#279400",hover_color="#1C6B00",command= on_cal_page_click)
 sidebar_button_3.place(x = 20, y = 150)
 
 sidebar_button_4 = customtkinter.CTkButton(sidebar_frame, text= "Generator",fg_color= "#279400",hover_color="#1C6B00", command = on_plan_page_click)
 sidebar_button_4.place(x = 20, y = 200)
 
-sidebar_button_5 = customtkinter.CTkButton(sidebar_frame, text= "Settings",fg_color= "#279400",hover_color="#1C6B00", command = settings_page)
+sidebar_button_5 = customtkinter.CTkButton(sidebar_frame, text= "Settings",fg_color= "#279400",hover_color="#1C6B00", command = on_setting_click)
 sidebar_button_5.place(x = 20, y = 250)
 
-sidebar_button_6 = customtkinter.CTkButton(sidebar_frame, text= "Home",fg_color= "#279400",hover_color="#1C6B00", command = home_Page)
+sidebar_button_6 = customtkinter.CTkButton(sidebar_frame, text= "Home",fg_color= "#279400",hover_color="#1C6B00", command = on_home_page_click)
 sidebar_button_6.place(x = 20, y = 300)
 
 #Appearance mode change 

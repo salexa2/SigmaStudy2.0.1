@@ -119,7 +119,7 @@ class WeeklyRoutinePlanner():
      divider.pack()
   
  def on_enter(self, event):
-        self.help_button_2.configure(text="*Time Fomat:[H:M AM/PM], Required Tasks have an assigned time.\n Add Your Required Tasks first! Tasks are unsorted.")
+        self.help_button_2.configure(text="*Time Fomat:[H:M AM/PM]")
 
  def on_leave(self, enter):
         self.help_button_2.configure(text="")
@@ -155,7 +155,7 @@ class WeeklyRoutinePlanner():
      self.task_frame = customtkinter.CTkFrame(form_frame, fg_color = "#279400", width = 1000, height = 100) 
      self.task_frame.pack(side = TOP)
      
-     self.help_button_ = customtkinter.CTkLabel(self.task_frame, text= "〶", font=customtkinter.CTkFont(size=28, weight="bold"), text_color = "#FFFFFF")
+     self.help_button_ = customtkinter.CTkLabel(self.task_frame, text= "ⓘ", font=customtkinter.CTkFont(size=28, weight="bold"), text_color = "#FFFFFF")
      self.help_button_.place(x = 550, y = 10)
      self.help_button_2 = customtkinter.CTkLabel(self.task_frame, text= "", width = 40, text_color = "#FFFFFF")
      self.help_button_2.place(x =595, y = 10)
