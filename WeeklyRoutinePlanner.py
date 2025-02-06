@@ -23,6 +23,7 @@ class WeeklyRoutinePlanner():
  taskETime = None
  days= []
  planner = []
+ #check buttons for the required task form
  Checkbutton1 = None
  Checkbutton2 = None 
  Checkbutton3 = None
@@ -30,6 +31,7 @@ class WeeklyRoutinePlanner():
  Checkbutton5 = None 
  Checkbutton6 = None
  Checkbutton7 = None
+ #time we get from the required task button
  military_time = ""
  military_time2 = ""
  #tempPlanner = planner
@@ -119,7 +121,7 @@ class WeeklyRoutinePlanner():
      divider.pack()
   
  def on_enter(self, event):
-        self.help_button_2.configure(text="*Time Fomat:[H:M AM/PM]")
+        self.help_button_2.configure(text="*Time Fomat:[H:M AM/PM], Required Tasks have an assigned time.\n Add Your Required Tasks first! Tasks are unsorted.")
 
  def on_leave(self, enter):
         self.help_button_2.configure(text="")
@@ -155,7 +157,7 @@ class WeeklyRoutinePlanner():
      self.task_frame = customtkinter.CTkFrame(form_frame, fg_color = "#279400", width = 1000, height = 100) 
      self.task_frame.pack(side = TOP)
      
-     self.help_button_ = customtkinter.CTkLabel(self.task_frame, text= "ⓘ", font=customtkinter.CTkFont(size=28, weight="bold"), text_color = "#FFFFFF")
+     self.help_button_ = customtkinter.CTkLabel(self.task_frame, text= "〶", font=customtkinter.CTkFont(size=28, weight="bold"), text_color = "#FFFFFF")
      self.help_button_.place(x = 550, y = 10)
      self.help_button_2 = customtkinter.CTkLabel(self.task_frame, text= "", width = 40, text_color = "#FFFFFF")
      self.help_button_2.place(x =595, y = 10)
@@ -395,8 +397,8 @@ class WeeklyRoutinePlanner():
                     h1, m2 = map(int, endN.split(':'))
 
                     #if start hour greater than second or if equal check the minute
-                    print("h:",h)
-                    print("h1:",h1)
+                  #  print("h:",h)
+                  #  print("h1:",h1)
                     if(h>h1):
                          self.error.place(x = 880, y= 5)
                          self.error.configure(text = self.errorType[3])
@@ -443,10 +445,12 @@ class WeeklyRoutinePlanner():
          temp.append(var) 
          count = count + 1
      
-    
+    # for b in temp:
+    #    print("value got:",b)
+
     #Adds a hobby to the list 
      for v in temp :
-        print("value got:",v)
+        #print("value got:",v)
         self.planner[v].createAHobby(self.taskName.get(),self.times,float(self.maxx),self.when,self.pos)
      self.savePlanner()
      return False
@@ -509,7 +513,6 @@ class WeeklyRoutinePlanner():
 
 
     
-
 
 
 

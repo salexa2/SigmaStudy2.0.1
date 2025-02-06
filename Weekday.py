@@ -2,7 +2,9 @@
 import Task
 from Task import *
 from datetime import *
-
+'''
+This is the weekday class, it holds the ncode functionality for a weekday object, ex: mond, tues, wednesday
+'''
 class Weekday():
     #--------------------------VARIABLES-----------------------------
     #default days:
@@ -89,7 +91,7 @@ class Weekday():
         print(when1)
         self.state = 1
         #print("lululu")
-        print("daytype",when1)
+        #print("daytype",when1)
         item = Task(name,self.weekdayNum,1,'0:00','0:00',times,maxx,when1,pos)
         if(item.getDayType() == 0):
          
@@ -104,7 +106,7 @@ class Weekday():
             if(task1.getDayType() == 0):
               self.morn.append(task1)
             elif(task1.getDayType() ==1):
-               print("bing bong")
+             
                self.after.append(task1)
             elif(task1.getDayType() ==2):
                self.evening.append(task1)
@@ -112,7 +114,7 @@ class Weekday():
  #insert a hobby
    def insertAt(self,item,planner): 
       #  print("return:",item.returnPos())
-        print("pso------------------------------------------------\n", item.returnPos())
+        #print("pso------------------------------------------------\n", item.returnPos())
         #if list is empty append to end of morn/after/or even
         if(len(planner)==0):
             #print("empty list")
@@ -131,7 +133,7 @@ class Weekday():
         #if the user prefers to do their hobby before their required tasks then it will insert before however if there is not enough time for thst task in the daytype it will apend after
         if(item.returnPos() == 0):
             print("Unit Testing: Hobby appended to before")
-            #if(he first element is say 12 pm which is the start of afternoon, you caant put afternoon task before it)
+            #if the first element is say 12 pm which is the start of afternoon, you caant put afternoon task before it)
             if( planner[0].getType() == 0):
                 if(planner[0].getStartTime().hour == 12 or planner[0].getStartTime().hour == 16 or planner[0].getStartTime().hour == 0):
              
@@ -222,13 +224,14 @@ class Weekday():
 
    #checks if a time is used      
    def checkifused(self, item):
-           print("LENGTH", len(self.startTimes))
+          # print("LENGTH", len(self.startTimes))
            if(len(self.startTimes)== 0):
                return False
 
            timer = 0
            print("Unit Testing: Checking for any time conflicts")
            while(timer < len(self.startTimes)):
+            '''
             print("count:", timer)
                
             print("item start:",item.getStartTime().hour)
@@ -237,6 +240,7 @@ class Weekday():
             print("other end:",self.endTimes[timer].hour)
             print("other start min:",self.startTimes[timer].minute)
             print("item end min:",item.getEndTime().minute)
+            '''
 
               
             if(item.getStartTime().hour<= self.startTimes[timer].hour):
@@ -298,7 +302,7 @@ class Weekday():
 
    def showAll(self):
        if(self.state == 1 ):
-         print("Day",self.nameD)
+         #print("Day",self.nameD)
          ypos = 10
          count = 0
          for x in self.morn: 
@@ -311,8 +315,7 @@ class Weekday():
                  x.setEndTime(time(int(x.getMax()), 0))  
             else:
                if(x.getType() == 1 and len(self.morn)>1 and count >0 and count < len(self.morn)):
-                 print("newwwww:",self.morn[count-1].getEndTime().hour)
-                 print("count - 1",count -1)
+                
                  minset = self.morn[count-1].getEndTime().minute + 30
                  if(self.morn[count-1].getEndTime().minute + 30  > 59) :
                          minset = self.morn[count-1].getEndTime().minute
@@ -339,7 +342,7 @@ class Weekday():
              
             else:                  
                 if(y.getType() == 1  and len(self.after)>1 and count >0 and count < len(self.after)):
-                     print("newwwww2:",self.after[count-1].getEndTime().hour)
+                    
 
                      minset = self.after[count-1].getEndTime().minute + 30
                      if(self.after[count-1].getEndTime().minute + 30  > 59) :
@@ -378,7 +381,7 @@ class Weekday():
                         # z.printTask()
                      else:
                           switch = 1
-                          print("to many hobbies\n")
+                          print("To many hobbies\n")
                           self.evening.remove(z)
                           
              ypos = ypos+100
@@ -394,7 +397,3 @@ class Weekday():
            print("Day has nothing:",self.nameD)
       
      
-
-
-
-

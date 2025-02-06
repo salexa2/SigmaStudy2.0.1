@@ -389,8 +389,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/cs321Project/data.json
 /data.json
-/cs321Project/transcript.txt
-/cs321Project/PlannerData.json
-/cs321Project/Callendata.json
+/transcript.txt
+/PlannerData.json
+/Callendata.json

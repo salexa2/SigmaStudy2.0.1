@@ -18,7 +18,7 @@ class gallary():
     #base number of rows and columns that hold each set 
     row_num = 0
     column_num = 0 
-    #saved name - DO NOT TOUCH THIS
+    #saved name 
     saveName  = "data.json"
     #gallarys main frame
     galframe = None
@@ -142,7 +142,7 @@ class gallary():
 
 
     def clearSets(self):
-        print("prompting to clear all sets")
+        print("DEBUG LOG: prompting to clear all sets")
         warningframe = customtkinter.CTkFrame(self.galframe, width = 400, height = 150)
         warningframe.place(x=0, y=10)
 

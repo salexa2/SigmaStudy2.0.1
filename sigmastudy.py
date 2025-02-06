@@ -22,8 +22,9 @@ import asyncio
 
 
 
-#study app that aids students in studying
-#testing added 1/24/2025 
+'''
+BASE CODE FOR STUDY APP , WHICH HAS SUMMARIZER, FLASHCARDS, CALANDER, AND GALLERY , AND STUDY PLAN GENERATOR
+'''
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -78,9 +79,11 @@ gen_button = customtkinter.CTkButton(plan_frame, text = "Generate", width = 25,h
 settings_label = customtkinter.CTkLabel(settings_frame, text="Settings", font=customtkinter.CTkFont(size=20, weight="bold"))
 scale_label = customtkinter.CTkLabel(settings_frame, text="Change window size:")
 side_label = customtkinter.CTkLabel( calander_frame, text="Events", font=customtkinter.CTkFont(size=20, weight="bold"))
-home_txt = "Thank you for using Study Sigma! Study Sigma is an innovative app that aims to revolutionize the way students study by providing a set of tools that enable to study effeciently. The data is stored when you close the program, so no need to worry about losing your data! This is our first app and it was created for a college software engineering project, any feedback is greatly appreaciated!\n\nHere's a list of the tools at your disposal:\n\n\nSummary - This allows you to upload text and Youtube links which then enable you to summarize a video and or create flashcards. The Longer the video, the longer it takes to get a summary.\n\nFlashcard Gallary - Display and modify your flashcard sets. \n\n\nCalender - Keep track of upcoming deadlines by adding and removing events from an automatically up to date calender.\n\n\nRoutine Planner - Generate a weekly routine by inputing required tasks such as a class or job and/or hobbies.\nOnce the generate button is clicked, a new routine will be created and showed.\n\n\nSettings - Change the Scaling of the objects on the screen (For those with bigger/smaller devices.\n\nFAQ:\n'Why is the Page Not Refresing?'\n~Click on the Page button to refresh it's contents!\n'What Languages Are there?'\n~Languages: English, Spanish, Korean\n~It takes a second to change the language, please wait...\n'My Card is not adding to a set?'\n~Click the '+' to add a card to a set, then done when you're finished.\n'I am missing an extra hobby?'\n~If a Hobby is not added, it's because the time of day it was meant to be added to was full and it was removed.\n'I Changed the language and switched back, but now the text is different?'\n~Warning: Google Translate is used to translate the text, the text will be different from orignal as Google Translate is not perfect. Don't worry, the language will reset to default when you close the app.\n_________________________________________________________________________________________________________________\n\nDevelopers: "
+home_txt = "Thank you for using Study Sigma! Study Sigma is an innovative app that aims to revolutionize the way students study by providing a set of tools that enable to study effeciently. The data is stored when you close the program, so no need to worry about losing your data! This is our first app and it was created for a college software engineering project, any feedback is greatly appreaciated!\n\nHere's a list of the tools at your disposal:\n\n\nSummary - This allows you to upload text and Youtube links which then enable you to summarize a video and or create flashcards. The Longer the video, the longer it takes to get a summary.\n\nFlashcard Gallary - Display and modify your flashcard sets. \n\n\nCalender - Keep track of upcoming deadlines by adding and removing events from an automatically up to date calender.\n\n\nRoutine Planner - Generate a weekly routine by inputing required tasks such as a class or job and/or hobbies.\nOnce the generate button is clicked, a new routine will be created and showed.\n\n\nSettings - Change the Scaling of the objects on the screen (For those with bigger/smaller devices.\n\nFAQ:\n'Why is the Page Not Refresing?'\n~Click on the Page button to refresh it's contents!\n'What Languages Are there?'\n~Languages: English, Spanish, Korean\n~It takes a second to change the language, please wait...\n'My Card is not adding to a set?'\n~Click the '+' to add a card to a set, then done when you're finished.\n'I am missing an extra hobby?'\n~If a Hobby is not added, it's because the time of day it was meant to be added to was full and it was removed.\n'I Changed the language and switched back, but now the text is different?'\n~Warning: Google Translate is used to translate the text, the text will be different from orignal as Google Translate is not perfect. Don't worry, the language will reset to default when you close the app.\n'My Plan generator isn't outputting the correct plan?'\n~ Similar to flashcard creation, click >add task< after you fill out the required form, then click done.If you want to add tasks and hobbies, instead of clicking >add task< after filling out last task, click >add hobby< be sure to click >add hobby< after you enter your last hobby, leave hobby form that pops up blank and click done. The generator should be accurate!\n_________________________________________________________________________________________________________________\n\nDevelopers: "
 home_label = customtkinter.CTkLabel(home_frame, text= "HOME", justify = "left", font=customtkinter.CTkFont(size=40, weight="bold"))
-developers = "Shadai Alexander (Git:https://github.com/salexa2), Chase Walters (Git:https://github.com/ChaseWalters)\n\nContact: salexa2@gmu.edu\n\nReleased 2023"
+developers = "Shadai Alexander (Git:https://github.com/salexa2), Chase Walters (Git:https://github.com/ChaseWalters)\n\nContact: salexa2@gmu.edu\n\n MIT\nLicense Copyright (c) 2025 Shadai Alexander"
+
+
 monthmenu = customtkinter.CTkOptionMenu(calander_frame, fg_color = "#279400",  button_color = "#279400", dropdown_hover_color = "#1C6B00" , width = 40,
      height = 25,values=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
      font=customtkinter.CTkFont(size=20))
@@ -136,6 +139,9 @@ def getLink(linkbar, default_text):
     #use openf to open the newly created text file
 
 def summarize(url,default_text,button):
+    '''
+    TODO: REDO THE SUMMARIZE FUNCTION
+    '''
     print("summary")
     
 
@@ -303,7 +309,7 @@ def gallary_page():
   
    gally.loadSets()                       
 
-   print("Unit Testing 3.0: Gallary page: gallary page should show\n")
+   print("Unit Testing 3.0: Gallary page: gallery page should show\n")
    gally.print_size()
    gally.print_Gal()
    gally.createButtons(gallary_frame)
@@ -318,7 +324,6 @@ def gallary_page():
 
 async def calander_page():  
      calander_frame.lift()
-    
      side_label.place(x=1150,y=70)
     
      
@@ -365,7 +370,7 @@ def helperP2(planner,form_frame,next_button):
 def RequiredForm(plan_frame,planner,gen):
 
      planner.reset()
-     print("form should show")
+     #print("form should show")
      gen.configure(state = "disabled")
      temp_frame = customtkinter.CTkFrame(plan_frame, width = 1150, height =750) 
      temp_frame.pack(side="top", pady=10)
@@ -475,7 +480,7 @@ logo_label.place(x = 60, y =10)
 sidebar_button_1 = customtkinter.CTkButton(sidebar_frame, text= "Summary", fg_color= "#279400", hover_color="#1C6B00", command= on_upload_button_click)
 sidebar_button_1.place(x = 20, y = 50)
 
-sidebar_button_2 = customtkinter.CTkButton(sidebar_frame, text= "Flash Card Gallary",fg_color= "#279400",hover_color="#1C6B00", command=gallary_page)
+sidebar_button_2 = customtkinter.CTkButton(sidebar_frame, text= "Flash Card Gallery",fg_color= "#279400",hover_color="#1C6B00", command=gallary_page)
 sidebar_button_2.place(x = 20, y = 100)
 
 sidebar_button_3 = customtkinter.CTkButton(sidebar_frame, text= "Calendar",fg_color= "#279400",hover_color="#1C6B00",command= on_cal_page_click)
